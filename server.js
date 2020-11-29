@@ -17,4 +17,4 @@ router.post('/off', function(res,req){
   res.sendStatus(200);
 });
 
-module.exports = router;
+router.listen(3000, ()=>console.log("Listening on port 3000!"));
