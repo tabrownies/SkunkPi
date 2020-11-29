@@ -1,20 +1,20 @@
-var express = require('express');
-var router = express.Router();
-var Gpio = require('onoff').Gpio;
-var cors = require('cors');
-router.use(cors());
+const express = require('express');
+const app = express()
+const Gpio = require('onoff').Gpio;
+const cors = require('cors');
+app.use(cors());
 /* GET home page. */
-var LED = new Gpio(4, 'out');
-router.get('/armenian', function(req, res, next) {
+const LED = new Gpio(4, 'out');
+app.get('/armenian', function(req, res, next) {
   res.send(true);
 });
-router.post('/on', function(res,req){
+app.post('/on', function(res,req){
   LED.writeSync(1);
   res.send('on');
 });
-router.post('/off', function(res,req){
+app.post('/off', function(res,req){
   LED.writeSync(0);
   res.sendStatus(200);
 });
 
-router.listen(3000, ()=>console.log("Listening on port 3000!"));
+app.listen(3000, ()=>console.log("Listening on port 3000!"));
